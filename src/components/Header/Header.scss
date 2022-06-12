@@ -1,0 +1,16 @@
+@import "ui-kit/styles";
+
+.Header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: auto;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 15px 24px;
+  height: 68px;
+  background-color: $color-primary;
+  z-index: 2;
+}

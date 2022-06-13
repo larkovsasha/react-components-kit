@@ -5,6 +5,7 @@ import { ROUTES } from '../../routes';
 import './App.scss';
 import { ButtonPage, HomePage, IconPage } from 'pages';
 import { IconButtonPage } from '../../pages/IconButton';
+import CollapsePage from '../../pages/CollapsePage';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path={ROUTES.HOME} element={<HomePage />} />
           <Route path={ROUTES.ICON} element={<IconPage />} />
           <Route path={ROUTES.ICON_BUTTON} element={<IconButtonPage />} />
+          <Route path={ROUTES.COLLAPSE} element={<CollapsePage />} />
         </Routes>
       </Layout>
     </div>

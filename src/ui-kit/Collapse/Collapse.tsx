@@ -1,4 +1,4 @@
-import React, { Children, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { CollapseProvider } from './Collapse.context';
 
 export interface CollapseProps {
@@ -12,42 +12,34 @@ export const ACCORDION_MODE_ERROR =
   '<Collapse /> can only accept 1 opened item in `accordion` mode';
 
 export const Collapse: React.FC<CollapseProps> = ({
-  openedItems,
+  mode,
   onChange,
+  openedItems,
   children,
-  mode = 'default',
 }) => {
-  const childrenArray = Children.toArray(children);
-
-  const openedItemsSet = useMemo(() => {
+  const openedItemsSet = useMemo<Set<string>>(() => {
     if (mode === 'accordion' && openedItems.length > 1) {
       console.warn(ACCORDION_MODE_ERROR);
-
-      return new Set(openedItems.slice(0, 1));
+      return new Set<string>(openedItems.slice(0, 1));
     }
-
-    return new Set(openedItems);
+    return new Set<string>(openedItems);
   }, [openedItems]);
 
-  const onHeaderClick = (name: string) => {
+  const onHeadItemClick = (name: string): void => {
     const isOpened = openedItemsSet.has(name);
-
     if (mode === 'default') {
       const newOpenedItems = isOpened
-        ? openedItems.filter((item) => item !== name)
+        ? openedItems.filter((el) => el !== name)
         : [...openedItems, name];
-
       onChange(newOpenedItems);
-
       return;
     }
-
     onChange(isOpened ? [] : [name]);
   };
 
   return (
-    <CollapseProvider value={{ openedItems: openedItemsSet, onHeaderClick }}>
-      {childrenArray}
+    <CollapseProvider value={{ openedItems: openedItemsSet, onHeadItemClick }}>
+      {React.Children.toArray(children)}
     </CollapseProvider>
   );
 };

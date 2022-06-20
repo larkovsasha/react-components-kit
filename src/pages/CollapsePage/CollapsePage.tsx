@@ -22,11 +22,28 @@ export const CollapsePage = () => {
       <Collapse
         openedItems={openedItems}
         onChange={setOpenedItems}
-        mode="accordion"
+        mode="default"
       >
         <CollapseItem name="first">
           {({ headerProps, contentVisible }) => {
-            console.log(headerProps);
+            return (
+              <div>
+                <div
+                  {...headerProps}
+                  style={{
+                    ...headerStyles,
+                  }}
+                >
+                  First collapse item
+                </div>
+                {contentVisible && <div style={contentStyles}>1</div>}
+              </div>
+            );
+          }}
+        </CollapseItem>
+
+        <CollapseItem name="first">
+          {({ headerProps, contentVisible }) => {
             return (
               <div>
                 <div

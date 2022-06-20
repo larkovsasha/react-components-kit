@@ -6,6 +6,7 @@ import './App.scss';
 import { ButtonPage, HomePage, IconPage } from 'pages';
 import { IconButtonPage } from '../../pages/IconButton';
 import CollapsePage from '../../pages/CollapsePage';
+import { CheckboxPage } from '../../pages/CheckboxPage';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path={ROUTES.ICON} element={<IconPage />} />
           <Route path={ROUTES.ICON_BUTTON} element={<IconButtonPage />} />
           <Route path={ROUTES.COLLAPSE} element={<CollapsePage />} />
+          <Route path={ROUTES.CHECKBOX} element={<CheckboxPage />} />
         </Routes>
       </Layout>
     </div>

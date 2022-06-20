@@ -1,12 +1,12 @@
-import { useCollapseItem } from '../Collapse.context';
 import React from 'react';
+import { useCollapseItem } from '../Collapse.context';
 
-interface CollapseItemChildrenHeaderProps {
-  onClick: React.MouseEventHandler;
+interface HeaderProps {
+  onClick: (e: React.MouseEvent) => void;
 }
 
 interface CollapseItemChildrenProps {
-  headerProps: CollapseItemChildrenHeaderProps;
+  headerProps: HeaderProps;
   contentVisible: boolean;
 }
 
@@ -15,11 +15,13 @@ interface CollapseItemProps {
   children: (props: CollapseItemChildrenProps) => React.ReactElement;
 }
 
-export function CollapseItem({ name, children }: CollapseItemProps) {
-  const { isOpened, onHeaderClick } = useCollapseItem(name);
-
+export const CollapseItem: React.FC<CollapseItemProps> = ({
+  name,
+  children,
+}) => {
+  const { isOpened, onHeadItemClick } = useCollapseItem(name);
   return children({
-    headerProps: { onClick: () => onHeaderClick(name) },
     contentVisible: isOpened,
+    headerProps: { onClick: () => onHeadItemClick(name) },
   });
-}
+};

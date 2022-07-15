@@ -5,4 +5,5 @@ export const ROUTES = {
   ICON_BUTTON: '/icon_button',
   COLLAPSE: '/collapse',
   CHECKBOX: '/checkbox',
+  HAMBURGER: '/hamburger',
 };
